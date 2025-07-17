@@ -1,0 +1,39 @@
+<div class="h-screen grid grid-cols-2 gap-4 p-4 bg-gray-100 font-sans">
+    <!-- Left Panel -->
+    <div class="flex flex-col bg-white rounded-2xl shadow-md p-4">
+      <label for="inputText" class="text-lg font-semibold mb-2">Paste Resume / Article</label>
+      <textarea id="inputText" [(ngModel)]="inputText" rows="10"
+                class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
+  
+      <label for="actionType" class="mt-4 text-lg font-semibold">Choose Action</label>
+      <select id="actionType" [(ngModel)]="selectedOption"
+              class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+        <option value="format">Format Article</option>
+        <option value="suggest">Provide Suggestions</option>
+        <option value="keywords">Match Keywords</option>
+      </select>
+  
+      <div *ngIf="selectedOption === 'keywords'" class="mt-4">
+        <label for="keywords" class="text-lg font-semibold">Enter Keywords (comma separated)</label>
+        <textarea id="keywords" [(ngModel)]="keywords"
+                  class="border rounded-lg p-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
+      </div>
+  
+      <button (click)="submit()"
+              class="mt-6 bg-cyan-700 text-white font-semibold py-2 px-4 rounded-lg hover:bg-cyan-900">
+        Submit
+      </button>
+    </div>
+  
+    <!-- Right Panel -->
+    <div class="bg-white rounded-2xl shadow-md p-4 overflow-auto relative">
+      <label class="text-lg font-semibold mb-2 block">Response</label>
+      
+      <div *ngIf="loading" class="absolute inset-0 bg-white/70 flex items-center justify-center">
+        <span class="animate-pulse text-blue-600 text-xl">Processing..</span>
+      </div>
+    
+      <pre class="whitespace-pre-wrap">{{ response }}</pre>
+    </div>
+    
+  </div>
