@@ -7,6 +7,10 @@ A full-stack **MEAN** application that allows users to:
 - Powered by locally running **Ollama (Gemma3:1b model)**
 
 ---
+## UI
+![alt text](app-resume.png)
+
+---
 
 ## Tech Stack
 

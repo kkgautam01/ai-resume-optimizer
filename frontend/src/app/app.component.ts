@@ -45,7 +45,8 @@ export class AppComponent {
         for (const line of lines) {
           try {
             const json = JSON.parse(line);
-            this.response += json.response || '';
+            const text = this.decodeUnicodeSafe(json.response);
+            this.response += text || '';
           } catch (err) {
             console.error('Invalid chunk:', line);
           }
@@ -56,6 +57,15 @@ export class AppComponent {
     });
   }
   
+   // Utility method: decode special characters
+   decodeUnicodeSafe(text: string): string {
+    try {
+      // Handles emojis and special characters safely
+      return decodeURIComponent(escape(text));
+    } catch (e) {
+      return text;
+    }
+  }
 }
 
 
