@@ -8,7 +8,7 @@ A full-stack **MEAN** application that allows users to:
 
 ---
 ## UI
-![alt text](app-resume.png)
+![alt text](app-screen.png)
 
 ---
 

@@ -1,39 +1,77 @@
-<div class="h-screen grid grid-cols-2 gap-4 p-4 bg-gray-100 font-sans">
-    <!-- Left Panel -->
-    <div class="flex flex-col bg-white rounded-2xl shadow-md p-4">
-      <label for="inputText" class="text-lg font-semibold mb-2">Paste Resume / Article</label>
-      <textarea id="inputText" [(ngModel)]="inputText" rows="10"
-                class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
-  
-      <label for="actionType" class="mt-4 text-lg font-semibold">Choose Action</label>
-      <select id="actionType" [(ngModel)]="selectedOption"
-              class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-cyan-500">
-        <option value="format">Format Article</option>
-        <option value="suggest">Provide Suggestions</option>
-        <option value="keywords">Match Keywords</option>
-      </select>
-  
-      <div *ngIf="selectedOption === 'keywords'" class="mt-4">
-        <label for="keywords" class="text-lg font-semibold">Enter Keywords (comma separated)</label>
-        <textarea id="keywords" [(ngModel)]="keywords"
-                  class="border rounded-lg p-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
+
+<header class="bg-emerald-400 ">
+  <div aria-label="Global" class="mx-auto flex items-center j  p-2 lg:px-8  " >
+    <div class="h-24 w-24 object-contain"><img src="bot.png" class=""/></div>
+    <div class="text-white">
+      <div class="p-4 text-xl font-semibold">
+        AI Article Formatter
       </div>
+    </div>
+
+  </div>
+</header>
+<!-- bg-[url(/ai.png)] -->
+<div class="  grid  "> 
+<div class="grid grid-cols-2 gap-4 p-4   font-sans text-gray-700">
+ 
+    <!-- Left Panel -->
+    <div class="  flex flex-col bg-white rounded-2xl shadow-md  border-1   border-gray-400">
+      <label for="inputText" class="text-lg font-semibold mb-2 bg-emerald-400 text-white p-4 rounded-t-lg">Paste Resume / Article</label>
+      <div class="flex flex-col rounded-2xl  p-4">
+
+      <textarea id="inputText" [(ngModel)]="inputText" rows="10"
+                class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder:text-gray-500 placeholder:italic
+                border-gray-500" placeholder="Write anything here..."></textarea>
+  
+      <div class=" grid grid-cols-2">
+        <div class="flex flex-col">
+          <label for="actionType" class="mt-4 text-lg font-semibold text-sm">Choose Action</label>
+
+          <select id="actionType" [(ngModel)]="selectedOption"
+          class="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-gray-500 border-gray-500 text-sm">
+            <option value="format">Format Article</option>
+            <option value="suggest">Provide Suggestions</option>
+            <option value="keywords">Match Keywords</option>
+          </select>
+        </div>
+        </div>
+        <div class=" grid grid-cols-2">
+        <div class="flex flex-col">
+          <div *ngIf="selectedOption === 'keywords'" class="mt-4 text-lg font-semibold text-sm">
+            <label for="keywords"  >Enter Keywords</label>
+            <textarea id="keywords" [(ngModel)]="keywords"
+                      class="border rounded-lg p-2 mt-1 w-full focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder:text-gray-500 placeholder:italic" placeholder="Comma separated keywords..."></textarea>
+          </div>
+        </div>
+      </div>
+     
+  
+      <div class=" grid grid-cols-2">
+        <div class="  flex-col">
   
       <button (click)="submit()"
-              class="mt-6 bg-cyan-700 text-white font-semibold py-2 px-4 rounded-lg hover:bg-cyan-900">
+              class="mt-6 bg-emerald-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-emerald-700">
         Submit
       </button>
     </div>
+    </div>
+    </div>
+  </div>
   
     <!-- Right Panel -->
-    <div class="bg-white rounded-2xl shadow-md p-4 overflow-auto relative">
-      <label class="text-lg font-semibold mb-2 block">Response</label>
+    <div class="  bg-white rounded-2xl shadow-md overflow-auto relative border-1 border-gray-400 ">
+      <label class="text-lg font-semibold mb-2 block bg-emerald-400 text-white p-4 rounded-t-lg">
+        Summary
+      </label>
+      <div class="flex flex-col bg-white rounded-2xl  p-4">
+        <div *ngIf="loading" class="absolute inset-0 bg-white/70 flex items-center justify-center">
+          <span class="animate-pulse text-gray-600 text-xl">Processing..</span>
+        </div>
       
-      <div *ngIf="loading" class="absolute inset-0 bg-white/70 flex items-center justify-center">
-        <span class="animate-pulse text-blue-600 text-xl">Processing..</span>
+        <div class="whitespace-pre-wrap" [innerHTML]="response"></div>
       </div>
-    
-      <pre class="whitespace-pre-wrap">{{ response }}</pre>
     </div>
     
   </div>
+</div>
+

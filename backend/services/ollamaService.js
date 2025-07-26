@@ -11,9 +11,8 @@ const promptBuilder = (text, keywords, action) => {
     case 'suggest':
       return `Suggest improvements and rewrite this:\n\n${text}`;
     case 'keywords':
-      return `Match keywords : \n\n ${keywords}
-       \n\n in the article : \n\n ${text}  
-       \n\n and tell, what percentage are matched, and bold these keywords in the article`;
+      return `Match exact occurance of keywords : \n\n ${keywords}
+       \n\n in the article : \n\n ${text} `;
     default:
       return text;
   }
